@@ -11,7 +11,7 @@ module.exports = {
     modules: ['node_modules', 'app'],
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.css$/,
         loader: 'style-loader!css',
