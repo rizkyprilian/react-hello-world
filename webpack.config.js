@@ -14,14 +14,29 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        loader: 'style-loader!css',
+        use: [{
+          loader: 'style-loader',
+        }, {
+          loader: 'css-loader',
+        }],
       },
       {
         test: /\.(scss|sass)$/,
-        loaders: [
-          'style-loader',
-          'css-loader?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]!sass',
-        ],
+        use: [{
+          loader: 'style-loader', // creates style nodes from JS strings
+        }, {
+          loader: 'css-loader', // translates CSS into CommonJS
+          options: {
+            modules: true,
+            importLoaders: 1,
+            localIdentName: '[path]___[name]__[local]___[hash:base64:5]',
+          },
+        }, {
+          loader: 'sass-loader', // compiles Sass to CSS
+          options: {
+            includePaths: ['./vendor'],
+          },
+        }],
       },
       {
         test: /\.(js|jsx)$/,
