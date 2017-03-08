@@ -4,26 +4,23 @@ module.exports = {
   },
   output: {
     path: __dirname,
-    filename: 'bundle.js',
+    filename: '[name].js',
+    chunkFilename: '[id].js',
+  },
+  resolve: {
+    modules: ['node_modules', 'app'],
   },
   module: {
     loaders: [
       {
         test: /\.css$/,
-        loader: 'style!css',
+        loader: 'style-loader!css',
       },
       {
         test: /\.(scss|sass)$/,
         loaders: [
-          'style',
-          'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]!sass',
-        ],
-      },
-      {
-        test: /\.(scss|sass)$/,
-        loaders: [
-          'style',
-          'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]!sass',
+          'style-loader',
+          'css-loader?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]!sass',
         ],
       },
       {
