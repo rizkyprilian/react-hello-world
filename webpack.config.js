@@ -1,20 +1,10 @@
 module.exports = {
   entry: {
-    app: './app',
+    app: './entry.js',
   },
   output: {
     path: __dirname,
-    filename: '[name].js',
-    chunkFileName: '[id].js',
-  },
-  devServer: {
-    hot: true,
-    inline: true,
-    colors: true,
-    historyApiFallback: true,
-  },
-  resolve: {
-    modulesDirectory: ['node_modules', 'lib', 'app', 'vendor'],
+    filename: 'bundle.js',
   },
   module: {
     loaders: [
@@ -32,16 +22,12 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /(node_modules|bower_components)/,
-        loader: 'babel',
+        loader: 'babel-loader',
         query: {
           presets: ['es2015', 'stage-0', 'react'],
-          plugins: ['transform-runtime', 'transform-decorators-legacy'],
+          plugins: ['transform-runtime'],
         },
       },
     ],
-    sassLoader: {
-      includePaths: ['./vendor'],
-    },
-    plugins: [],
   },
 };
